@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTVIS - Sistema Empresarial</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-slate-900 text-white flex-shrink-0 hidden md:flex flex-col">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold tracking-widest text-blue-400">
+                    <a href="/" class="hover:text-white">NOTVIS</a>
+                </h1>
+                <p class="text-xs text-slate-400 uppercase">Sistemas de Gestão</p>
+            </div>
+
+            <nav class="flex-1 px-4 space-y-2 py-4">
+                <a href="/" class="flex items-center space-x-3 p-3 rounded-lg bg-slate-800 text-white transition">
+                    <span class="font-medium">Tela Inicial</span>
+                </a>
+                <a href="/clientes" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white transition">
+                    <span class="font-medium">Clientes</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white transition">
+                    <span class="font-medium">Ordens de Serviço</span>
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-slate-800">
+                <div class="flex items-center space-x-3 text-sm">
+                    <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold">U</div>
+                    <span>Usuário Logado</span>
+                </div>
+            </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            <header class="bg-white shadow-sm border-b border-gray-200 py-4 px-8 flex justify-between items-center">
+                <h2 class="text-lg font-semibold text-gray-700">Sistema de Gerenciamento</h2>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-500">{{ date('d/m/Y') }}</span>
+                </div>
+            </header>
+
+            <main class="p-8">
+                <div class="max-w-7xl mx-auto">
+                    {{ $slot }}
+                </div>
+            </main>
+        </div>
+    </div>
+
+    @livewireScripts
+</body>
+</html>

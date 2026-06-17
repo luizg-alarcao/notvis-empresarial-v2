@@ -1,0 +1,187 @@
+<div class="flex flex-col w-full h-full bg-slate-100 p-3 gap-3 font-sans text-slate-800">
+
+    <!-- ================= 1. BARRA DE CARTÃO ================= -->
+    <div class="bg-white p-2 rounded shadow-sm border border-slate-200 flex items-center justify-between border-l-4 border-l-slate-800">
+        <div class="flex items-center gap-3">
+            <label class="text-xs font-bold text-slate-500 uppercase tracking-wide ml-2">Cartão (F4):</label>
+            <select class="text-sm border border-slate-300 rounded px-3 py-1.5 focus:ring-1 focus:ring-slate-500 outline-none w-64 shadow-sm">
+                <option>--- SELECIONE OU CRIE UM CARTÃO ---</option>
+            </select>
+
+            <!-- Botão Novo Atendimento -->
+            <button class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-1.5 rounded text-xs font-bold shadow-sm transition-colors whitespace-nowrap">
+                + Novo Atendimento
+            </button>
+
+            <!-- BOTÃO SOLICITADO: Excluir Cartão -->
+            <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded text-xs font-bold shadow-sm transition-colors whitespace-nowrap">
+                Excluir Cartão
+            </button>
+        </div>
+        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mr-2">
+            SISTEMA NOTVIS • ORDEM DE SERVIÇO
+        </div>
+    </div>
+
+    <!-- ================= 2. CABEÇALHO DE METADADOS ================= -->
+    <div class="bg-white p-3 rounded shadow-sm border border-slate-200 flex items-center gap-6">
+        <div>
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">OS Nº</span>
+            <span class="text-lg font-black text-slate-800">#000125</span>
+        </div>
+        <div class="h-8 w-px bg-slate-200"></div>
+        <div>
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">Data Abertura</span>
+            <span class="text-sm font-semibold text-slate-700">01/06/2026</span>
+        </div>
+        <div class="h-8 w-px bg-slate-200"></div>
+
+        <div class="w-64">
+            <label class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Atendente</label>
+            <div class="flex gap-1">
+                <input type="text" value="01" placeholder="ID" class="w-12 text-sm border border-slate-300 rounded px-2 py-1.5 focus:border-slate-500 outline-none text-center font-semibold shadow-sm">
+                <select class="flex-1 text-sm border border-slate-300 rounded px-2 py-1.5 focus:border-slate-500 outline-none shadow-sm">
+                    <option value="1">Gustavo Henrique</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="ml-auto">
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded border border-slate-300 uppercase tracking-wider shadow-sm">Em Andamento</span>
+        </div>
+    </div>
+
+    <!-- ================= 3. CLIENTE E VEÍCULO ================= -->
+    <div class="bg-white p-3 rounded shadow-sm border border-slate-200 flex items-end gap-3">
+        <div class="flex-1">
+            <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Cliente (F10)</label>
+            <div class="flex gap-1">
+                <input type="text" placeholder="ID" class="w-16 text-sm border border-slate-300 rounded px-2 py-1.5 focus:border-slate-500 outline-none shadow-sm">
+                <input type="text" placeholder="Nome do Cliente..." class="flex-1 text-sm border border-slate-300 rounded px-2 py-1.5 focus:border-slate-500 outline-none shadow-sm">
+                <button class="bg-slate-100 border border-slate-300 px-3 rounded hover:bg-slate-200 shadow-sm">🔍</button>
+            </div>
+        </div>
+        <div class="w-48">
+            <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Veículo</label>
+            <input type="text" placeholder="Marca / Modelo" class="w-full text-sm border border-slate-300 rounded px-2 py-1.5 focus:border-slate-500 outline-none shadow-sm">
+        </div>
+        <div class="w-24">
+            <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Placa</label>
+            <input type="text" placeholder="ABC-1234" class="w-full text-sm border border-slate-300 rounded px-2 py-1.5 text-center font-bold tracking-widest focus:border-slate-500 outline-none shadow-sm">
+        </div>
+    </div>
+
+    <!-- ================= 4. PRODUTOS E SERVIÇOS (Divisórias Fixadas) ================= -->
+    <div class="bg-white rounded shadow-sm border border-slate-200 flex-1 flex flex-col min-h-0 overflow-hidden">
+        <div class="p-3 border-b border-slate-100 flex items-center gap-2">
+            <input type="text" placeholder="ID" class="w-20 text-sm border border-slate-300 rounded px-3 py-1.5 focus:border-slate-500 outline-none shadow-sm">
+            <input type="text" placeholder="Adicionar produto ou serviço (F6)..." class="flex-1 text-sm border border-slate-300 rounded px-3 py-1.5 focus:border-slate-500 outline-none shadow-sm">
+            <button class="bg-slate-100 border border-slate-300 px-4 py-1.5 rounded text-sm font-bold hover:bg-slate-200 shadow-sm">🔍</button>
+        </div>
+
+        <div class="flex-1 overflow-auto">
+            <table class="w-full text-left text-xs min-w-[1000px] border-collapse">
+                <thead class="bg-slate-50 sticky top-0 z-10 shadow-sm">
+                    <tr>
+                        <!-- Bordas verticais nativas para simular os campos ajustáveis da Screenshot_82.png -->
+                        <th class="p-3 text-slate-500 uppercase whitespace-nowrap border-r border-slate-300 cursor-col-resize">Cód.</th>
+                        <th class="p-3 text-slate-500 uppercase w-full border-r border-slate-300 cursor-col-resize">Descrição</th>
+                        <th class="p-3 text-slate-500 uppercase text-center whitespace-nowrap border-r border-slate-300 cursor-col-resize">Data</th>
+                        <th class="p-3 text-slate-500 uppercase text-center whitespace-nowrap border-r border-slate-300 cursor-col-resize">Hora</th>
+                        <th class="p-3 text-slate-500 uppercase text-right whitespace-nowrap border-r border-slate-300 cursor-col-resize">Qtd.</th>
+                        <th class="p-3 text-slate-500 uppercase text-right whitespace-nowrap border-r border-slate-300 cursor-col-resize">Vlr. Unit</th>
+                        <th class="p-3 text-slate-500 uppercase text-right whitespace-nowrap border-r border-slate-300 cursor-col-resize">Vlr. Desc</th>
+                        <th class="p-3 text-slate-500 uppercase text-right whitespace-nowrap border-r border-slate-300 cursor-col-resize">Subtotal</th>
+                        <th class="p-3 text-slate-500 uppercase text-center whitespace-nowrap">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    <tr class="hover:bg-slate-50 transition-colors cursor-pointer">
+                        <td class="p-3 font-mono text-slate-500 whitespace-nowrap">1204</td>
+                        <td class="p-3 font-medium text-slate-700">LÂMPADA H4 24V ORIGINAL</td>
+                        <td class="p-3 text-center text-slate-500 whitespace-nowrap">01/06/26</td>
+                        <td class="p-3 text-center text-slate-500 whitespace-nowrap">10:15</td>
+                        <td class="p-3 text-right whitespace-nowrap">1,00</td>
+                        <td class="p-3 text-right whitespace-nowrap">R$ 42,75</td>
+                        <td class="p-3 text-right text-red-500 whitespace-nowrap">R$ 0,00</td>
+                        <td class="p-3 text-right font-bold whitespace-nowrap">R$ 42,75</td>
+                        <td class="p-3 text-center whitespace-nowrap"><button class="text-red-500 hover:text-red-700 font-bold">EXCLUIR</button></td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition-colors cursor-pointer bg-blue-50/50">
+                        <td class="p-3 font-mono text-slate-500 whitespace-nowrap">SRV01</td>
+                        <td class="p-3 font-medium text-slate-700">MÃO DE OBRA - TROCA DE CONECTOR</td>
+                        <td class="p-3 text-center text-slate-500 whitespace-nowrap">01/06/26</td>
+                        <td class="p-3 text-center text-slate-500 whitespace-nowrap">10:42</td>
+                        <td class="p-3 text-right whitespace-nowrap">1,00</td>
+                        <td class="p-3 text-right whitespace-nowrap">R$ 80,00</td>
+                        <td class="p-3 text-right text-red-500 whitespace-nowrap">R$ 5,00</td>
+                        <td class="p-3 text-right font-bold whitespace-nowrap">R$ 75,00</td>
+                        <td class="p-3 text-center whitespace-nowrap"><button class="text-red-500 hover:text-red-700 font-bold">EXCLUIR</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ================= 5. RODAPÉ ================= -->
+    <div class="flex gap-3 shrink-0 items-stretch">
+        <div class="flex-1 bg-white p-3 rounded shadow-sm border border-slate-200 flex flex-col">
+            <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Observações Internas</label>
+            <textarea class="w-full h-full text-sm border border-slate-300 rounded focus:border-slate-500 outline-none p-2 shadow-sm resize-none" placeholder="Adicione uma observação..."></textarea>
+        </div>
+
+        <div class="w-64 bg-white p-3 rounded shadow-sm border border-slate-200 flex flex-col gap-2 justify-between">
+            <label class="block text-[10px] font-bold text-slate-500 uppercase">Aplicar Desconto</label>
+            <select class="w-full text-xs border border-slate-300 rounded px-2 py-1.5 focus:border-slate-500 outline-none shadow-sm">
+                <option value="item">No Item Selecionado</option>
+                <option value="todos">Em Todos os Itens</option>
+            </select>
+            <div class="flex gap-2">
+                <div class="flex-1 relative">
+                    <span class="absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">%</span>
+                    <input type="text" placeholder="0,00" class="w-full text-xs border border-slate-300 rounded pl-6 pr-2 py-1.5 text-right focus:border-slate-500 outline-none shadow-sm">
+                </div>
+                <div class="flex-1 relative">
+                    <span class="absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">R$</span>
+                    <input type="text" placeholder="0,00" class="w-full text-xs border border-slate-300 rounded pl-7 pr-2 py-1.5 text-right focus:border-slate-500 outline-none shadow-sm">
+                </div>
+            </div>
+            <button class="w-full bg-slate-900 text-white font-bold py-1.5 rounded shadow-sm hover:bg-slate-800 transition-all text-xs">APLICAR</button>
+        </div>
+
+        <!-- Bloco de resumo financeiro CORRIGIDO E AFASTADO (Garantia anti-encavalamento) -->
+        <div class="w-80 bg-white p-4 rounded shadow-sm border border-slate-200 flex flex-col justify-between shrink-0">
+            <div class="flex flex-col gap-1.5 w-full text-xs font-semibold text-slate-500">
+                <div class="flex justify-between items-center">
+                    <span>Itens:</span>
+                    <span class="text-slate-700">2</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span>Subtotal:</span>
+                    <span class="text-slate-700">R$ 122,75</span>
+                </div>
+                <div class="flex justify-between items-center text-red-500">
+                    <span>Desconto:</span>
+                    <span>- R$ 5,00</span>
+                </div>
+            </div>
+
+            <div class="w-full h-px bg-slate-200 my-2"></div>
+
+            <!-- Consertado de vez: Empurra os dois textos para as pontas e impede fusão -->
+            <div class="flex justify-between items-center w-full mb-3 gap-4">
+                <span class="text-[10px] font-bold text-slate-500 uppercase whitespace-nowrap">Total Geral</span>
+                <span class="text-xl font-black text-slate-900 leading-none whitespace-nowrap">R$ 117,75</span>
+            </div>
+
+            <div class="flex gap-2">
+                <button class="flex-1 bg-slate-800 text-white font-bold py-2 rounded shadow-md hover:bg-slate-700 transition-all text-xs tracking-wider whitespace-nowrap">
+                    IMPRIMIR
+                </button>
+                <button class="flex-1 bg-slate-800 text-white font-bold py-2 rounded shadow-md hover:bg-slate-700 transition-all text-xs tracking-wider whitespace-nowrap">
+                    FINALIZAR (F2)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
