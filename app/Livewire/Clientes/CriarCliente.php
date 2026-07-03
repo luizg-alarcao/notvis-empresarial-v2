@@ -4,6 +4,7 @@ namespace App\Livewire\Clientes;
 
 use Livewire\Component;
 use App\Models\Cliente;
+use App\Models\AuditLog;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Layout;
 
@@ -27,7 +28,11 @@ class CriarCliente extends Component
         $cep = preg_replace('/[^0-9]/', '', $valor);
 
         if (strlen($cep) === 8) {
-            $response = Http::get("https://viacep.com.br/ws/{$cep}/json/")->json();
+            try {
+                $response = Http::timeout(5)->get("https://viacep.com.br/ws/{$cep}/json/")->json();
+            } catch (\Throwable) {
+                return;
+            }
 
             if (!isset($response['erro'])) {
                 $this->rua = $response['logradouro'];
@@ -56,10 +61,12 @@ class CriarCliente extends Component
     public function salvar()
     {
         // Limpando caracteres para salvar apenas números (exceto e-mail e nomes)
-        $docLimpo = preg_replace('/[^0-9]/', '', $this->cpf_cnpj);
+        $docLimpo = Cliente::limparDocumento($this->cpf_cnpj);
         $whatsLimpo = preg_replace('/[^0-9]/', '', $this->whatsapp);
         $this->rg = preg_replace('/[^0-9]/', '', $this->rg);
         $this->cep = preg_replace('/[^0-9]/', '', $this->cep);
+        $this->cpf_cnpj = $docLimpo;
+        $this->whatsapp = $whatsLimpo;
         if (!$this->isentoIE) {
             $this->inscricao_estadual = preg_replace('/[^0-9]/', '', $this->inscricao_estadual);
         }
@@ -67,12 +74,13 @@ class CriarCliente extends Component
         // Suas regras com as mensagens em Português que você pediu
         $this->validate([
             'nome' => 'required|min:3',
-            'whatsapp' => 'required|min:10',
+            'whatsapp' => 'required|digits_between:10,11',
             'email' => 'required|email',
             'cpf_cnpj' => 'required|unique:clientes,cpf_cnpj',
         ], [
             'nome.required' => 'O nome é obrigatório.',
             'whatsapp.required' => 'O WhatsApp é obrigatório.',
+            'whatsapp.digits_between' => 'O WhatsApp deve ter DDD e número.',
             'whatsapp.min' => 'O WhatsApp deve ter o DDD e o número.',
             'email.required' => 'O e-mail é obrigatório.',
             'email.email' => 'Insira um e-mail válido.',
@@ -81,12 +89,12 @@ class CriarCliente extends Component
         ]);
 
         // Validação de tamanho que você solicitou
-        if (strlen($docLimpo) != 11 && strlen($docLimpo) != 14) {
-            $this->addError('cpf_cnpj', 'O documento deve ter 11 (CPF) ou 14 (CNPJ) dígitos.');
+        if (!Cliente::documentoValido($docLimpo)) {
+            $this->addError('cpf_cnpj', 'Informe um CPF ou CNPJ valido.');
             return;
         }
 
-        Cliente::create([
+        $cliente = Cliente::create([
             'nome' => $this->nome,
             'cpf_cnpj' => $docLimpo,
             'rg' => $this->rg,
@@ -102,6 +110,11 @@ class CriarCliente extends Component
             'complemento' => $this->complemento,
             'cidade' => $this->cidade,
             'estado' => $this->estado,
+        ]);
+
+        AuditLog::registrar('clientes', 'cliente_criado', 'Cliente cadastrado.', $cliente, [
+            'nome' => $cliente->nome,
+            'documento' => $cliente->cpf_cnpj,
         ]);
 
         //Código antigo que usava flash e reset, mas eu achei melhor redirecionar para a página de listagem, comentei ele.

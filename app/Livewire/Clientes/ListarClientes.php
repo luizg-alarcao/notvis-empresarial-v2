@@ -4,6 +4,7 @@ namespace App\Livewire\Clientes;
 
 use Livewire\Component;
 use App\Models\Cliente;
+use App\Models\AuditLog;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 
@@ -24,6 +25,10 @@ class ListarClientes extends Component
         $cliente = Cliente::find($id);
 
         if ($cliente) {
+            AuditLog::registrar('clientes', 'cliente_excluido', 'Cliente removido do cadastro.', $cliente, [
+                'nome' => $cliente->nome,
+                'documento' => $cliente->cpf_cnpj,
+            ]);
             $cliente->delete();
             session()->flash('success', 'Cliente removido com sucesso!');
         }

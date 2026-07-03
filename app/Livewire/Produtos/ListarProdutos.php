@@ -3,6 +3,7 @@
 namespace App\Livewire\Produtos;
 
 use Livewire\Component;
+use App\Models\AuditLog;
 use App\Models\Produto;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
@@ -18,8 +19,17 @@ class ListarProdutos extends Component
 
     public function excluir($id)
     {
-        Produto::find($id)->delete();
-        session()->flash('success', 'Produto removido com sucesso!');
+        $produto = Produto::find($id);
+
+        if ($produto) {
+            AuditLog::registrar('produtos', 'produto_excluido', 'Produto ou servico removido do cadastro.', $produto, [
+                'nome' => $produto->nome,
+                'tipo' => $produto->tipo,
+                'codigo_barras' => $produto->codigo_barras,
+            ]);
+            $produto->delete();
+            session()->flash('success', 'Produto removido com sucesso!');
+        }
     }
 
     #[Layout('layouts.app')]
@@ -36,4 +46,3 @@ class ListarProdutos extends Component
         ]);
     }
 }
-

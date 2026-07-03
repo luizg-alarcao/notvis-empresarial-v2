@@ -12,6 +12,13 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    public const PERFIS = [
+        'ADMIN' => 'Administrador',
+        'GERENTE' => 'Gerente',
+        'ATENDENTE' => 'Atendente',
+        'ESTOQUE' => 'Estoque',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +27,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'perfil',
+        'ativo',
         'password',
     ];
 
@@ -42,7 +51,34 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'ultimo_login_em' => 'datetime',
+            'ativo' => 'boolean',
             'password' => 'hashed',
         ];
+    }
+
+    public function perfilNome(): string
+    {
+        return self::PERFIS[$this->perfil] ?? $this->perfil ?? 'Usuario';
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->perfil === 'ADMIN';
+    }
+
+    public function podeAcessar(string $modulo): bool
+    {
+        if ($this->isAdmin()) {
+            return true;
+        }
+
+        return match ($modulo) {
+            'clientes', 'os' => in_array($this->perfil, ['GERENTE', 'ATENDENTE'], true),
+            'produtos', 'estoque' => in_array($this->perfil, ['GERENTE', 'ESTOQUE'], true),
+            'relatorios' => $this->perfil === 'GERENTE',
+            'configuracoes', 'usuarios' => false,
+            default => false,
+        };
     }
 }

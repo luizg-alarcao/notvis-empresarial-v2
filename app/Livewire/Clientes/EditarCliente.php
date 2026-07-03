@@ -4,6 +4,8 @@ namespace App\Livewire\Clientes;
 
 use Livewire\Component;
 use App\Models\Cliente;
+use App\Models\AuditLog;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 
 class EditarCliente extends Component
@@ -40,17 +42,31 @@ class EditarCliente extends Component
 
     public function salvar()
     {
+        $docLimpo = Cliente::limparDocumento($this->cpf_cnpj);
+        $whatsappLimpo = preg_replace('/[^0-9]/', '', (string) $this->whatsapp);
+        $this->cpf_cnpj = $docLimpo;
+        $this->whatsapp = $whatsappLimpo;
+
         $this->validate([
             'nome' => 'required|min:3',
-            'cpf_cnpj' => 'required',
-            'whatsapp' => 'required',
+            'cpf_cnpj' => [
+                'required',
+                Rule::unique('clientes', 'cpf_cnpj')->ignore($this->cliente->id),
+            ],
+            'whatsapp' => 'required|digits_between:10,11',
             'email' => 'required|email',
+            'limite_credito' => 'nullable|numeric|min:0',
         ]);
+
+        if (!Cliente::documentoValido($docLimpo)) {
+            $this->addError('cpf_cnpj', 'Informe um CPF ou CNPJ valido.');
+            return;
+        }
 
         $this->cliente->update([
             'nome' => $this->nome,
-            'cpf_cnpj' => $this->cpf_cnpj,
-            'whatsapp' => $this->whatsapp,
+            'cpf_cnpj' => $docLimpo,
+            'whatsapp' => $whatsappLimpo,
             'email' => $this->email,
             'limite_credito' => $this->limite_credito,
             'cep' => $this->cep,
@@ -59,6 +75,11 @@ class EditarCliente extends Component
             'bairro' => $this->bairro,
             'cidade' => $this->cidade,
             'estado' => $this->estado,
+        ]);
+
+        AuditLog::registrar('clientes', 'cliente_atualizado', 'Cadastro do cliente atualizado.', $this->cliente, [
+            'nome' => $this->cliente->nome,
+            'documento' => $this->cliente->cpf_cnpj,
         ]);
 
         return redirect()->route('clientes.index')
