@@ -13,10 +13,10 @@ Crie dois servicos dentro do mesmo projeto:
 
 ## Configuracao do app
 
-No servico do Laravel, configure:
+O projeto ja possui `railway.toml`, entao o Railway recebe automaticamente:
 
 - Build Command: `npm run build`
-- Pre-Deploy Command: `chmod +x ./railway/init-app.sh && sh ./railway/init-app.sh`
+- Pre-Deploy Command: `sh ./railway/init-app.sh`
 
 Depois crie um dominio publico em:
 
