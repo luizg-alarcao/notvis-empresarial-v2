@@ -355,6 +355,8 @@ class DemoDataSeeder
 
     private function ordem(string $nomeCartao, Cliente $cliente, Funcionario $atendente, array $mecanicos, array $dados, array $itens, ?User $usuario): OrdemServico
     {
+        $dataReferencia = $dados['finalizado_em'] ?? $dados['cancelado_em'] ?? now();
+
         $os = OrdemServico::updateOrCreate(
             ['nome_cartao' => $nomeCartao],
             [
@@ -377,8 +379,8 @@ class DemoDataSeeder
                 'motivo_cancelamento' => $dados['motivo_cancelamento'] ?? null,
                 'desconto_geral_tipo' => $dados['desconto_geral_tipo'] ?? null,
                 'desconto_geral_valor' => $dados['desconto_geral_valor'] ?? 0,
-                'created_at' => $dados['finalizado_em'] instanceof Carbon ? $dados['finalizado_em']->copy()->subHours(2) : now()->subDays(3),
-                'updated_at' => $dados['finalizado_em'] ?? now(),
+                'created_at' => $dataReferencia instanceof Carbon ? $dataReferencia->copy()->subHours(2) : now()->subDays(3),
+                'updated_at' => $dataReferencia,
             ]
         );
 
