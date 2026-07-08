@@ -69,6 +69,7 @@ class DemoDataSeeder
     private function usuarios(): array
     {
         $dados = [
+            ['name' => 'ADMIN DEMO', 'email' => 'admin@notvis.com', 'perfil' => 'ADMIN'],
             ['name' => 'GERENTE DEMO', 'email' => 'gerente@notvis.com', 'perfil' => 'GERENTE'],
             ['name' => 'ATENDENTE DEMO', 'email' => 'atendente@notvis.com', 'perfil' => 'ATENDENTE'],
             ['name' => 'ESTOQUE DEMO', 'email' => 'estoque@notvis.com', 'perfil' => 'ESTOQUE'],

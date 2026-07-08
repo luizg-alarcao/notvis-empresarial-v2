@@ -17,9 +17,20 @@ use App\Livewire\Relatorios;
 use App\Models\AuditLog;
 use App\Models\Empresa;
 use App\Models\OrdemServico;
+use App\Models\User;
 use App\Support\DemoDataSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/demo/preparar-dados-publico/{token}', function (string $token, DemoDataSeeder $seeder) {
+    abort_unless(hash_equals('notvis-tcc-demo-2026', $token), 404);
+
+    $resumo = $seeder->run(User::where('perfil', 'ADMIN')->first());
+
+    return response()->view('demo.preparar-dados', [
+        'resumo' => $resumo,
+    ]);
+})->name('demo.preparar-dados-publico');
 
 Route::get('/login', Login::class)->middleware('guest')->name('login');
 Route::get('/primeiro-acesso', PrimeiroAcesso::class)->middleware('guest')->name('primeiro-acesso');
