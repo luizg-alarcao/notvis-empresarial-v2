@@ -135,6 +135,7 @@
         html[data-theme="dark"] body {
             background: #1f2937 !important;
             color: #dbe4ef !important;
+            color-scheme: dark;
         }
 
         html[data-theme="dark"] main,
@@ -144,8 +145,25 @@
             background-color: #273244 !important;
         }
 
+        html[data-theme="dark"] .bg-slate-50\/60,
+        html[data-theme="dark"] .bg-white\/60 {
+            background-color: rgba(39, 50, 68, 0.72) !important;
+        }
+
         html[data-theme="dark"] .bg-white {
             background-color: #334155 !important;
+            color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .bg-gray-100,
+        html[data-theme="dark"] .bg-gray-200,
+        html[data-theme="dark"] .bg-blue-100,
+        html[data-theme="dark"] .bg-emerald-100,
+        html[data-theme="dark"] .bg-red-100,
+        html[data-theme="dark"] .bg-amber-100,
+        html[data-theme="dark"] .bg-yellow-100,
+        html[data-theme="dark"] .bg-slate-200 {
+            background-color: #3b495f !important;
             color: #e2e8f0 !important;
         }
 
@@ -162,14 +180,23 @@
         html[data-theme="dark"] .text-slate-800,
         html[data-theme="dark"] .text-slate-900,
         html[data-theme="dark"] .text-gray-700,
+        html[data-theme="dark"] .text-gray-800,
+        html[data-theme="dark"] .text-gray-900,
         html[data-theme="dark"] .text-slate-700 {
             color: #e2e8f0 !important;
         }
 
         html[data-theme="dark"] .text-slate-600,
         html[data-theme="dark"] .text-slate-500,
-        html[data-theme="dark"] .text-gray-500 {
+        html[data-theme="dark"] .text-gray-500,
+        html[data-theme="dark"] .text-gray-600 {
             color: #cbd5e1 !important;
+        }
+
+        html[data-theme="dark"] .text-slate-400,
+        html[data-theme="dark"] .text-gray-400,
+        html[data-theme="dark"] .text-gray-300 {
+            color: #9fb0c6 !important;
         }
 
         html[data-theme="dark"] input,
@@ -180,6 +207,17 @@
             color: #f8fafc !important;
         }
 
+        html[data-theme="dark"] input::placeholder,
+        html[data-theme="dark"] textarea::placeholder {
+            color: #94a3b8 !important;
+            opacity: 1;
+        }
+
+        html[data-theme="dark"] option {
+            background-color: #1f2937 !important;
+            color: #f8fafc !important;
+        }
+
         html[data-theme="dark"] table thead,
         html[data-theme="dark"] .bg-slate-100,
         html[data-theme="dark"] .bg-slate-50 {
@@ -187,9 +225,156 @@
         }
 
         html[data-theme="dark"] .border-slate-200,
+        html[data-theme="dark"] .border-slate-100,
+        html[data-theme="dark"] .border-gray-100,
         html[data-theme="dark"] .border-gray-200,
+        html[data-theme="dark"] .border-gray-300,
         html[data-theme="dark"] .border-slate-300 {
             border-color: #475569 !important;
+        }
+
+        html[data-theme="dark"] .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-color: #475569 !important;
+        }
+
+        html[data-theme="dark"] .hover\:bg-white:hover,
+        html[data-theme="dark"] .hover\:bg-slate-50:hover,
+        html[data-theme="dark"] .hover\:bg-slate-100:hover,
+        html[data-theme="dark"] .hover\:bg-slate-200:hover,
+        html[data-theme="dark"] .hover\:bg-gray-50:hover,
+        html[data-theme="dark"] .hover\:bg-gray-100:hover,
+        html[data-theme="dark"] tbody tr:hover {
+            background-color: #3b495f !important;
+            color: #f8fafc !important;
+        }
+
+        html[data-theme="dark"] .hover\:bg-blue-50:hover {
+            background-color: #1e3a5f !important;
+        }
+
+        html[data-theme="dark"] .hover\:bg-red-50:hover {
+            background-color: #4b1d2a !important;
+        }
+
+        html[data-theme="dark"] .hover\:bg-amber-100:hover,
+        html[data-theme="dark"] .hover\:bg-yellow-100:hover {
+            background-color: #5a3d15 !important;
+        }
+
+        html[data-theme="dark"] .hover\:bg-purple-50:hover,
+        html[data-theme="dark"] .hover\:bg-indigo-50:hover {
+            background-color: #2f2a5f !important;
+        }
+
+        html[data-theme="dark"] .hover\:text-gray-700:hover,
+        html[data-theme="dark"] .hover\:text-slate-700:hover,
+        html[data-theme="dark"] .hover\:text-slate-900:hover {
+            color: #f8fafc !important;
+        }
+
+        html[data-theme="dark"] .hover\:text-white:hover {
+            color: #ffffff !important;
+        }
+
+        html[data-theme="dark"] .bg-blue-50 {
+            background-color: #17345f !important;
+        }
+
+        html[data-theme="dark"] .bg-emerald-50,
+        html[data-theme="dark"] .bg-green-50 {
+            background-color: #123f35 !important;
+        }
+
+        html[data-theme="dark"] .bg-red-50 {
+            background-color: #4b1d2a !important;
+        }
+
+        html[data-theme="dark"] .bg-orange-50,
+        html[data-theme="dark"] .bg-amber-50,
+        html[data-theme="dark"] .bg-yellow-50 {
+            background-color: #4a3416 !important;
+        }
+
+        html[data-theme="dark"] .bg-purple-50,
+        html[data-theme="dark"] .bg-indigo-50 {
+            background-color: #2f2a5f !important;
+        }
+
+        html[data-theme="dark"] .text-blue-700,
+        html[data-theme="dark"] .text-blue-600,
+        html[data-theme="dark"] .text-blue-500,
+        html[data-theme="dark"] .text-blue-400,
+        html[data-theme="dark"] .text-blue-300,
+        html[data-theme="dark"] .text-blue-900,
+        html[data-theme="dark"] .text-blue-800 {
+            color: #93c5fd !important;
+        }
+
+        html[data-theme="dark"] .text-emerald-700,
+        html[data-theme="dark"] .text-emerald-600,
+        html[data-theme="dark"] .text-green-700,
+        html[data-theme="dark"] .text-green-600,
+        html[data-theme="dark"] .text-green-900,
+        html[data-theme="dark"] .text-green-800 {
+            color: #6ee7b7 !important;
+        }
+
+        html[data-theme="dark"] .text-red-700,
+        html[data-theme="dark"] .text-red-600,
+        html[data-theme="dark"] .text-red-500,
+        html[data-theme="dark"] .text-red-400,
+        html[data-theme="dark"] .text-red-900,
+        html[data-theme="dark"] .text-red-800 {
+            color: #fca5a5 !important;
+        }
+
+        html[data-theme="dark"] .text-orange-700,
+        html[data-theme="dark"] .text-orange-600,
+        html[data-theme="dark"] .text-orange-500,
+        html[data-theme="dark"] .text-amber-700,
+        html[data-theme="dark"] .text-yellow-700 {
+            color: #fbbf24 !important;
+        }
+
+        html[data-theme="dark"] .text-cyan-700,
+        html[data-theme="dark"] .text-cyan-600 {
+            color: #67e8f9 !important;
+        }
+
+        html[data-theme="dark"] .text-slate-950 {
+            color: #f8fafc !important;
+        }
+
+        html[data-theme="dark"] .text-purple-700,
+        html[data-theme="dark"] .text-indigo-700,
+        html[data-theme="dark"] .text-indigo-600 {
+            color: #c4b5fd !important;
+        }
+
+        html[data-theme="dark"] .border-blue-200,
+        html[data-theme="dark"] .border-emerald-200,
+        html[data-theme="dark"] .border-green-200,
+        html[data-theme="dark"] .border-red-200,
+        html[data-theme="dark"] .border-orange-200,
+        html[data-theme="dark"] .border-amber-200,
+        html[data-theme="dark"] .border-yellow-200,
+        html[data-theme="dark"] .border-purple-200,
+        html[data-theme="dark"] .border-indigo-200 {
+            border-color: #64748b !important;
+        }
+
+        html[data-theme="dark"] .shadow-sm,
+        html[data-theme="dark"] .shadow,
+        html[data-theme="dark"] .shadow-md,
+        html[data-theme="dark"] .shadow-lg,
+        html[data-theme="dark"] .shadow-xl,
+        html[data-theme="dark"] .shadow-2xl {
+            box-shadow: 0 10px 24px rgba(2, 6, 23, 0.24), 0 1px 2px rgba(2, 6, 23, 0.28) !important;
+        }
+
+        html[data-theme="dark"] ::selection {
+            background: #2563eb;
+            color: #ffffff;
         }
     </style>
 
@@ -225,7 +410,7 @@
                 @endif
                 @if($usuarioAtual?->podeAcessar('produtos'))
                     <a href="{{ route('produtos.index') }}" class="flex items-center space-x-3 p-3 rounded-lg transition {{ request()->routeIs('produtos.*') ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300 hover:text-white' }}">
-                        <span class="font-medium">Produtos e Serviços</span>
+                        <span class="font-medium">Produtos</span>
                     </a>
                 @endif
                 @if($usuarioAtual?->podeAcessar('estoque'))
